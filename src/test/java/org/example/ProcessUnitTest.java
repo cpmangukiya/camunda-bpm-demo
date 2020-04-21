@@ -20,42 +20,5 @@ import static org.junit.Assert.*;
  */
 public class ProcessUnitTest {
 
-  @ClassRule
-  @Rule
-  public static ProcessEngineRule rule = TestCoverageProcessEngineRuleBuilder.create().build();
-
-  private static final String PROCESS_DEFINITION_KEY = "camunda-bpm-demo";
-
-  static {
-    LogFactory.useSlf4jLogging(); // MyBatis
-  }
-
-  @Before
-  public void setup() {
-    init(rule.getProcessEngine());
-  }
-
-  /**
-   * Just tests if the process definition is deployable.
-   */
-  @Test
-  @Deployment(resources = "process.bpmn")
-  public void testParsingAndDeployment() {
-    // nothing is done here, as we just want to check for exceptions during deployment
-  }
-
-  @Test
-  @Deployment(resources = "process.bpmn")
-  public void testHappyPath() throws SQLException {
-    ProcessInstance processInstance = processEngine().getRuntimeService().startProcessInstanceByKey(PROCESS_DEFINITION_KEY);
-
-    assertThat(processInstance).isEnded();
-
-    // To inspect the DB, run the following line in the debugger
-    // then connect your browser to: http://localhost:8082
-    // and enter the JDBC URL: jdbc:h2:mem:camunda
-    org.h2.tools.Server.createWebServer("-web").start();
-
-  }
 
 }
