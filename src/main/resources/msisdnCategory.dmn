@@ -13,7 +13,7 @@
       <output id="output_1" label="Category" name="category" typeRef="string" />
       <rule id="DecisionRule_11nadx3">
         <inputEntry id="UnaryTests_1jziz17">
-          <text>"P101"</text>
+          <text>"SP101"</text>
         </inputEntry>
         <outputEntry id="LiteralExpression_0vo81ws">
           <text>"PREPAID"</text>
@@ -21,10 +21,26 @@
       </rule>
       <rule id="DecisionRule_1xf7a4z">
         <inputEntry id="UnaryTests_15oevnt">
-          <text>"P102"</text>
+          <text>"SP102"</text>
         </inputEntry>
         <outputEntry id="LiteralExpression_1vanxah">
           <text>"POSTPAID"</text>
+        </outputEntry>
+      </rule>
+      <rule id="DecisionRule_1n9j4p1">
+        <inputEntry id="UnaryTests_1qqo1ic">
+          <text>"SP103"</text>
+        </inputEntry>
+        <outputEntry id="LiteralExpression_143oand">
+          <text>"POSTPAID"</text>
+        </outputEntry>
+      </rule>
+      <rule id="DecisionRule_090t2ec">
+        <inputEntry id="UnaryTests_1o8guqa">
+          <text>"SP104"</text>
+        </inputEntry>
+        <outputEntry id="LiteralExpression_0m39nu7">
+          <text>"PREPAID"</text>
         </outputEntry>
       </rule>
     </decisionTable>
