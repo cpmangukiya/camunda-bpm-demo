@@ -1,16 +1,15 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <bpmn:definitions xmlns:bpmn="http://www.omg.org/spec/BPMN/20100524/MODEL" xmlns:bpmndi="http://www.omg.org/spec/BPMN/20100524/DI" xmlns:dc="http://www.omg.org/spec/DD/20100524/DC" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:di="http://www.omg.org/spec/DD/20100524/DI" xmlns:camunda="http://camunda.org/schema/1.0/bpmn" id="Definitions_0moxufk" targetNamespace="http://bpmn.io/schema/bpmn" exporter="Camunda Modeler" exporterVersion="3.7.2" camunda:diagramRelationId="eafff85f-f39e-4e4c-a6ce-2edd74c8264c">
   <bpmn:collaboration id="Collaboration_1wzbbcd">
-    <bpmn:participant id="Participant_1s6dkf3" name="New MSISDN Request" processRef="PROCESS_NEW_MSISDN" />
+    <bpmn:participant id="Participant_1s6dkf3" name="ASSIGN MSISDN" processRef="ASSIGN_MSISDN" />
   </bpmn:collaboration>
-  <bpmn:process id="PROCESS_NEW_MSISDN" isExecutable="true">
+  <bpmn:process id="ASSIGN_MSISDN" name="Assign MSISDN" isExecutable="true">
     <bpmn:laneSet id="LaneSet_0i5a97d">
       <bpmn:lane id="Lane_0vsj5lc">
         <bpmn:flowNodeRef>StartEvent_1</bpmn:flowNodeRef>
         <bpmn:flowNodeRef>Gateway_0x2lq1c</bpmn:flowNodeRef>
         <bpmn:flowNodeRef>Activity_1120sbp</bpmn:flowNodeRef>
         <bpmn:flowNodeRef>Gateway_0bb3odw</bpmn:flowNodeRef>
-        <bpmn:flowNodeRef>Activity_1jplvqk</bpmn:flowNodeRef>
         <bpmn:flowNodeRef>Gateway_0f0ni8e</bpmn:flowNodeRef>
         <bpmn:flowNodeRef>Activity_1ywgw7m</bpmn:flowNodeRef>
         <bpmn:flowNodeRef>Activity_1if7ofe</bpmn:flowNodeRef>
@@ -20,6 +19,7 @@
         <bpmn:flowNodeRef>Event_0nbotm7</bpmn:flowNodeRef>
         <bpmn:flowNodeRef>Event_160ue3n</bpmn:flowNodeRef>
         <bpmn:flowNodeRef>Event_1s3ot14</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>Activity_1jplvqk</bpmn:flowNodeRef>
       </bpmn:lane>
     </bpmn:laneSet>
     <bpmn:startEvent id="StartEvent_1" name="MSISDN Requested">
@@ -39,10 +39,6 @@
       <bpmn:outgoing>Flow_0pgdz0g</bpmn:outgoing>
       <bpmn:outgoing>Flow_0ogck1y</bpmn:outgoing>
     </bpmn:exclusiveGateway>
-    <bpmn:userTask id="Activity_1jplvqk" name="Postpaid Review" camunda:formKey="embedded:app:forms/approve-postpaid.html" camunda:candidateGroups="postpaidReviewers">
-      <bpmn:incoming>Flow_0pgdz0g</bpmn:incoming>
-      <bpmn:outgoing>Flow_0x8b7qd</bpmn:outgoing>
-    </bpmn:userTask>
     <bpmn:exclusiveGateway id="Gateway_0f0ni8e" name="Is Approved ?">
       <bpmn:incoming>Flow_0x8b7qd</bpmn:incoming>
       <bpmn:outgoing>Flow_0n7d5o1</bpmn:outgoing>
@@ -112,13 +108,17 @@
     </bpmn:sequenceFlow>
     <bpmn:endEvent id="Event_1s3ot14" name="Invalid Request: Notification Sent">
       <bpmn:incoming>Flow_08lv3k5</bpmn:incoming>
-      <bpmn:messageEventDefinition id="MessageEventDefinition_1io51is" />
+      <bpmn:messageEventDefinition id="MessageEventDefinition_10sh6r0" />
     </bpmn:endEvent>
+    <bpmn:userTask id="Activity_1jplvqk" name="Postpaid Review" camunda:candidateGroups="postpaidReviewers">
+      <bpmn:incoming>Flow_0pgdz0g</bpmn:incoming>
+      <bpmn:outgoing>Flow_0x8b7qd</bpmn:outgoing>
+    </bpmn:userTask>
   </bpmn:process>
   <bpmn:message id="Message_03wrbp9" name="Message_0q5ol7j" />
   <bpmn:message id="Message_1fnb2vw" />
   <bpmn:message id="Message_15w2182" />
-  <bpmn:error id="Error_1hu94yh" />
+  <bpmn:error id="Error_1hu94yh" name="A" errorCode="A" camunda:errorMessage="A" />
   <bpmndi:BPMNDiagram id="BPMNDiagram_1">
     <bpmndi:BPMNPlane id="BPMNPlane_1" bpmnElement="Collaboration_1wzbbcd">
       <bpmndi:BPMNShape id="Participant_1s6dkf3_di" bpmnElement="Participant_1s6dkf3" isHorizontal="true">
@@ -136,9 +136,9 @@
       </bpmndi:BPMNEdge>
       <bpmndi:BPMNEdge id="Flow_08lv3k5_di" bpmnElement="Flow_08lv3k5">
         <di:waypoint x="500" y="175" />
-        <di:waypoint x="500" y="222" />
+        <di:waypoint x="500" y="272" />
         <bpmndi:BPMNLabel>
-          <dc:Bounds x="472" y="175" width="15" height="14" />
+          <dc:Bounds x="472" y="187" width="15" height="14" />
         </bpmndi:BPMNLabel>
       </bpmndi:BPMNEdge>
       <bpmndi:BPMNEdge id="Flow_0pgdz0g_di" bpmnElement="Flow_0pgdz0g">
@@ -235,9 +235,6 @@
           <dc:Bounds x="708" y="95" width="85" height="14" />
         </bpmndi:BPMNLabel>
       </bpmndi:BPMNShape>
-      <bpmndi:BPMNShape id="Activity_1jplvqk_di" bpmnElement="Activity_1jplvqk">
-        <dc:Bounds x="840" y="110" width="100" height="80" />
-      </bpmndi:BPMNShape>
       <bpmndi:BPMNShape id="Gateway_0f0ni8e_di" bpmnElement="Gateway_0f0ni8e" isMarkerVisible="true">
         <dc:Bounds x="985" y="125" width="50" height="50" />
         <bpmndi:BPMNLabel>
@@ -274,11 +271,14 @@
           <dc:Bounds x="1117" y="518" width="45" height="27" />
         </bpmndi:BPMNLabel>
       </bpmndi:BPMNShape>
-      <bpmndi:BPMNShape id="Event_1amp40h_di" bpmnElement="Event_1s3ot14">
-        <dc:Bounds x="482" y="222" width="36" height="36" />
+      <bpmndi:BPMNShape id="Event_1y85l8g_di" bpmnElement="Event_1s3ot14">
+        <dc:Bounds x="482" y="272" width="36" height="36" />
         <bpmndi:BPMNLabel>
-          <dc:Bounds x="461" y="265" width="82" height="27" />
+          <dc:Bounds x="461" y="315" width="82" height="27" />
         </bpmndi:BPMNLabel>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Activity_06fxnfr_di" bpmnElement="Activity_1jplvqk">
+        <dc:Bounds x="840" y="110" width="100" height="80" />
       </bpmndi:BPMNShape>
     </bpmndi:BPMNPlane>
   </bpmndi:BPMNDiagram>
