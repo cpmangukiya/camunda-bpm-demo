@@ -3,7 +3,7 @@
   <bpmn:collaboration id="Collaboration_1wzbbcd">
     <bpmn:participant id="Participant_1s6dkf3" name="ASSIGN MSISDN" processRef="ASSIGN_MSISDN" />
   </bpmn:collaboration>
-  <bpmn:process id="ASSIGN_MSISDN" name="Assign MSISDN" isExecutable="true">
+  <bpmn:process id="ASSIGN_MSISDN" name="Assign MSISDN" isExecutable="true" camunda:versionTag="1">
     <bpmn:laneSet id="LaneSet_0i5a97d">
       <bpmn:lane id="Lane_0vsj5lc">
         <bpmn:flowNodeRef>StartEvent_1</bpmn:flowNodeRef>
