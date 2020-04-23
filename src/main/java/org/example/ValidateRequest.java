@@ -15,7 +15,7 @@ public class ValidateRequest implements JavaDelegate {
 
         LOGGER.info("Validate request");
 
-        Long custId = (Long) execution.getVariable("custId");
+        String custId = (String) execution.getVariable("custId");
         String msisdn = (String) execution.getVariable("msisdn");
         String protype = (String) execution.getVariable("protype");
 
